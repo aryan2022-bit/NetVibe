@@ -8,6 +8,8 @@ import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
 import UserWidget from "scenes/widgets/UserWidget";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
@@ -21,7 +23,7 @@ const ProfilePage = () => {
         return;
       }
       
-      const response = await fetch(`http://localhost:3001/users/${userId}`, {
+      const response = await fetch(`${API_URL}/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });

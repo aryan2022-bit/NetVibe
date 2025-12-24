@@ -14,6 +14,8 @@ import { Close } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { setLogin } from "state";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 const EditProfileDialog = ({ open, onClose, user }) => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
@@ -37,7 +39,7 @@ const EditProfileDialog = ({ open, onClose, user }) => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:3001/users/${user._id}`, {
+      const response = await fetch(`${API_URL}/users/${user._id}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,

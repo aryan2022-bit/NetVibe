@@ -15,6 +15,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost, removePost } from "state";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 const PostWidget = ({
   postId,
   postUserId,
@@ -49,7 +51,7 @@ const PostWidget = ({
         return;
       }
       
-      const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+      const response = await fetch(`${API_URL}/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -78,7 +80,7 @@ const PostWidget = ({
     }
     
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}`, {
+      const response = await fetch(`${API_URL}/posts/${postId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -106,7 +108,7 @@ const PostWidget = ({
     }
     
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/comment`, {
+      const response = await fetch(`${API_URL}/posts/${postId}/comment`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -158,7 +160,7 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`${API_URL}/assets/${picturePath}`}
         />
       )}
 

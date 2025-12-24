@@ -1,10 +1,12 @@
 import { Box } from "@mui/material";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 const UserImage = ({ image, size = "60px" }) => {
   // Fixed by AI: Handle null/undefined image with fallback (prevents broken image links)
   const imageSrc = image 
-    ? `http://localhost:3001/assets/${image}` 
-    : "http://localhost:3001/assets/default-avatar.png"; // You may want to add a default avatar image
+    ? `${API_URL}/assets/${image}` 
+    : `${API_URL}/assets/default-avatar.png`;
   
   return (
     <Box width={size} height={size}>
